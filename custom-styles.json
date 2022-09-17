@@ -1,0 +1,19 @@
+[
+    {
+        "name": "colored",
+        "borders": {
+            "top": {
+                "left": "", "center": "-", "right": "", "colSeparator": "-"
+            },
+            "middle": {
+                "left": "", "center": "-", "right": "", "colSeparator": "-"
+            },
+            "bottom": {
+                "left": "", "center": "", "right": "", "colSeparator": ""
+            },
+            "data" : {
+                "left": "", "center": " ", "right": "", "colSeparator": " "
+            }
+        }
+    }
+]

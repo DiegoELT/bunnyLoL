@@ -1,0 +1,21 @@
+{
+  "name": "bunnylolbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/rest": "^1.1.0",
+    "ascii-table3": "^0.7.7",
+    "discord.js": "^14.3.0",
+    "node-fetch": "^2.6.7",
+    "pad": "^3.2.0",
+    "sequelize": "^6.21.6",
+    "sqlite3": "^5.1.0"
+  }
+}
