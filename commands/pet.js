@@ -5,6 +5,6 @@ module.exports = {
         .setName('pet')
         .setDescription('Pets the Bunny that controls the bot!'),
     async execute(interaction) {
-        await interaction.reply('The bunny appreciates your pets');
+        await interaction.reply('```The bunny appreciates your pets.```');
     }
 }

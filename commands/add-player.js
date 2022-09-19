@@ -62,12 +62,12 @@ module.exports = {
                 }
 
                 await table.addPlayers(playerToAdd);
-                return interaction.reply('Succesfully added the player ' + playerName + ' to the leaderboard.');
+                return interaction.reply('```Succesfully added the player ' + playerName + ' to the leaderboard.```');
             }
 
-            return interaction.reply('There are no players named `' + playerName + '` in that region.');
+            return interaction.reply('```There are no players named ' + playerName + ' in that region.```');
         } 
 
-        return interaction.reply('You have no tables named `' + tableName + '`. Make sure to create it with `create_table`');
+        return interaction.reply('```You have no tables named ' + tableName + '. Make sure to create it with create_leaderboard```');
     }
 }
