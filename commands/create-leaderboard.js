@@ -31,9 +31,9 @@ module.exports = {
         const newTable = await user.addTable(tableName)
 
         if (newTable) {
-            return interaction.reply('Your table has been succesfully created. You can now add players to it.');
+            return interaction.reply('```Your table has been succesfully created. You can now add players to it.```');
         } 
 
-        return interaction.reply('There is already a table with this name owned by you. If you wish to delete use the `delete_table` command.')
+        return interaction.reply('```There is already a table with this name owned by you. If you wish to delete use the delete_leaderboard command.```')
     }
 }

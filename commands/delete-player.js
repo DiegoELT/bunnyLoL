@@ -15,7 +15,7 @@ module.exports = {
                 .setDescription('The name of the player to remove.')
                 .setRequired(true)),
     async execute(interaction) {
-        await interaction.reply('Searching for the table...');
+        await interaction.reply('```Searching for the table...```');
 
         const userId = interaction.user.id;
         const tableName = interaction.options.getString('leaderboard_name');
@@ -35,7 +35,7 @@ module.exports = {
         });
 
         if (!leaderboard)
-            return interaction.editReply('There is no table `' + tableName + '` with such player, or you do not own a table with that name.');
+            return interaction.editReply('```There is no table ' + tableName + ' with such player, or you do not own a table with that name.```');
 
         await ChallengeParticipants.destroy({
             where: {
@@ -44,7 +44,7 @@ module.exports = {
             }
         });
 
-        return interaction.editReply('`' + summonerName + '` was succesfully deleted from `' + tableName + '`.');
+        return interaction.editReply('```' + summonerName + ' was succesfully deleted from ' + tableName + '.```');
 
     }
 }

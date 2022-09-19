@@ -34,7 +34,7 @@ module.exports = {
             });
 
             if (!owner)
-                return interaction.reply('There is no table named `' + leaderboardName + '` for user `' + leaderboardOwner +'`.');
+                return interaction.reply('```There is no table named ' + leaderboardName + ' for user ' + leaderboardOwner +'```.');
 
             ownerId = owner.discord_id;
         } else {
@@ -49,9 +49,9 @@ module.exports = {
         });
 
         if (!leaderboard) 
-            return interaction.reply('There is no table named `' + leaderboardName + '` for that user.');
+            return interaction.reply('```There is no table named ' + leaderboardName + ' for that user.```');
 
-        await interaction.reply('Calculating');
+        await interaction.reply('```Calculating...```');
         
         const players = await leaderboard.getPlayers(); 
 
@@ -62,17 +62,17 @@ module.exports = {
         })
 
         const leaderTable = new AsciiTable3(leaderboard.table_name);
-        leaderTable.setHeading('', 'Summoner', 'Wins', 'Losses', 'Rank', 'LP');
-
-        const rows = []
+        leaderTable.setHeading('', 'Summoner','Total Games', 'Wins', 'Losses', 'Win %', 'Rank', 'LP');
 
         for (let i = 0; i < playerData.length; i++) {
             const player = playerData[i];
             leaderTable.addRow(
                 String(i + 1) + '.',
                 player.summonerName,
+                player.wins + player.losses,
                 player.wins,
                 player.losses,
+                (player.wins / (player.wins + player.losses) * 100).toFixed(2),
                 player.tier.charAt(0) + player.tier.slice(1).toLowerCase() + ' ' + player.rank,
                 player.leaguePoints
             )
