@@ -71,6 +71,9 @@ async function getPlayerLeagues(playerList, interaction) {
             }
         });
         const data = await response.json();
+
+        if (data[0] == null) continue;
+
         if (data.length == 0 || (data.length == 1 && data[0].queueType === 'RANKED_FLEX_SR')) {
             playerData.push(generateUnrankedJSON(player.lol_username));
         }

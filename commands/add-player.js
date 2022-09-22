@@ -57,7 +57,7 @@ module.exports = {
                     playerToAdd = await Players.create({
                         riot_id: player.id,
                         region_id: region,
-                        lol_username: player.name
+                        lol_username: playerName
                     })
                 }
 
