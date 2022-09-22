@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 
-const { ChallengeTables, ChallengeParticipants } = require('../dbObjects');
+const { ChallengeTables, ChallengeParticipants, Players } = require('../dbObjects');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -21,7 +21,8 @@ module.exports = {
             where: {
                 discord_id: userId,
                 table_name: leaderboardName
-            }
+            },
+            include: Players
         });
 
         if (leaderboard) {
@@ -31,8 +32,18 @@ module.exports = {
                 where: {
                     table_id: leaderboard.table_id
                 }
-            })
+            });
+
             leaderboard.destroy();
+
+            const leaderboardPlayers = leaderboard.players;
+
+            for (const player of leaderboardPlayers) {
+                const tablesLeft = await player.countChallenge_tables();
+                if (!tablesLeft)
+                    player.destroy();
+            };
+            //
             
             return interaction.editReply('```The table has been deleted.```')
         } else {

@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+const Sequelize = require('sequelize');
 
 const { ChallengeTables, ChallengeParticipants, Players } = require('../dbObjects');
 
@@ -34,15 +35,17 @@ module.exports = {
             }
         });
 
+        //console.log(leaderboard);
+
         if (!leaderboard)
             return interaction.editReply('```There is no table ' + tableName + ' with such player, or you do not own a table with that name.```');
 
-        await ChallengeParticipants.destroy({
-            where: {
-                table_id: leaderboard.table_id,
-                riot_id: leaderboard.players[0].riot_id
-            }
-        });
+        const playerToDelete = leaderboard.players[0]
+        await leaderboard.removePlayer(playerToDelete);
+
+        const tablesLeft = await playerToDelete.countChallenge_tables();
+        if (!tablesLeft)
+            playerToDelete.destroy();
 
         return interaction.editReply('```' + summonerName + ' was succesfully deleted from ' + tableName + '.```');
 
