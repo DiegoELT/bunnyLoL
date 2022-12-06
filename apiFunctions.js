@@ -89,4 +89,37 @@ async function getPlayerLeagues(playerList, interaction) {
     return playerData;
 }
 
-module.exports = { getPlayerByName, getPlayerLeagues }
+async function getRandomChampions(numberOfChampions, listOfTags) {
+	const url = 'http://ddragon.leagueoflegends.com/cdn/12.22.1/data/en_US/champion.json';
+
+	const response = await fetch(url, {
+		method: "GET"
+	});
+
+	const data = await response.json();
+	var validChampions = [];
+
+	for (const key in data['data']) {
+		let championTags = data['data'][key]['tags'];
+		let championName = data['data'][key]['name'] + ', ' + data['data'][key]['title']; 
+
+
+		if (listOfTags.length) {
+			for (const tag of listOfTags) {
+				if (championTags.includes(tag)) {
+					validChampions.push(championName);
+					break;
+				}
+			}
+		}
+
+		else 
+			validChampions.push(championName);
+	}
+
+	const randomizedChampions = validChampions.sort(() => 0.5 - Math.random());
+
+	return randomizedChampions.slice(0, numberOfChampions);
+}
+
+module.exports = { getPlayerByName, getPlayerLeagues, getRandomChampions }
