@@ -1,3 +1,7 @@
 node_modules
 bunnyLoLDB.db
 config.json
+.DS_Store
+additionalScripts/additional-scripts-env
+additionalScripts/*.csv
+additionalScripts/*.json
